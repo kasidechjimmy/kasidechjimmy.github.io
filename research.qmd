@@ -1,0 +1,51 @@
+---
+title: "Research"
+description: "Publications, working papers and presentations by Kasidech Somboonkittichai on inclusive peace negotiations in civil wars, rebel governance and power-sharing."
+# The three lists below are filled from YAML files in research/:
+#   research/papers.yml         publications and working papers
+#   research/presentations.yml  presentations
+listing:
+  - id: publications-list
+    contents: research/papers.yml
+    template: research/paper.ejs
+    sort: false
+    include:
+      section: publication
+    template-params:
+      prefix: pub
+  - id: working-papers-list
+    contents: research/papers.yml
+    template: research/paper.ejs
+    sort: false
+    include:
+      section: working
+    template-params:
+      prefix: wp
+  - id: presentations-list
+    contents: research/presentations.yml
+    template: research/presentation.ejs
+    sort: false
+---
+
+## Research interests
+
+::: {.opening}
+**Substantive:** Inclusion and Exclusion in Peace Processes, Civil War and Peacebuilding, Rebel Governance, Power-sharing, Climate and Conflict, Spatial and Network Diffusion
+
+**Methods:** Computational Social Science, Social Network Analysis, Quantitative Text Analysis, Geospatial Data, Quasi-Experimental Designs
+:::
+
+## Publications
+
+::: {#publications-list}
+:::
+
+## Working papers
+
+::: {#working-papers-list}
+:::
+
+## Presentations
+
+::: {#presentations-list}
+:::

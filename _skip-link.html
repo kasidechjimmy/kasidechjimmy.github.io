@@ -1,0 +1,50 @@
+<a class="skip-to-content" href="#quarto-document-content">Skip to content</a>
+<script>
+  (function () {
+    // Quarto's listing script (Research) runs whenever the #fragment of
+    // the address changes, e.g. after the skip link, and expects
+    // window['quarto-listings']. Quarto creates it only for its built-in list
+    // layouts, not for this site's own templates (research/*.ejs),
+    // so without this empty default the script throws an error.
+    window['quarto-listings'] = window['quarto-listings'] || {};
+
+    // Quarto places this include inside <main>, after the header. Move the
+    // skip link to the very start of <body> so it is the first stop for
+    // keyboard users.
+    var skip = document.querySelector("a.skip-to-content");
+    if (skip) document.body.insertBefore(skip, document.body.firstChild);
+    var main = document.getElementById("quarto-document-content");
+    if (main) main.setAttribute("tabindex", "-1");
+
+    // On page load Quarto rewrites links that contain /index.html to /, which
+    // on .../index.html would turn the skip link into a link to another page
+    // (the browser would reload). Put the plain in-page link back afterwards.
+    document.addEventListener("DOMContentLoaded", function () {
+      if (skip) skip.setAttribute("href", "#quarto-document-content");
+    });
+
+    // The header is an ordinary block that scrolls away with the page.
+    // Quarto expects a fixed header and pads the page to make room for it;
+    // removing these classes keeps that offset at zero.
+    var header = document.getElementById("quarto-header");
+    if (header) header.classList.remove("fixed-top", "headroom");
+
+    // Quarto gives the phone menu button role="menu"; it is a plain button.
+    var toggler = document.querySelector("#quarto-header .navbar-toggler");
+    if (toggler) toggler.removeAttribute("role");
+
+    // Escape closes the open phone menu and puts focus back on its button.
+    // It acts only while focus is on that button or inside the menu, and not
+    // on wide screens, where the button is hidden and the tabs show instead.
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var menu = document.getElementById("navbarCollapse");
+      if (!menu || !menu.classList.contains("show") || !window.bootstrap) return;
+      if (!toggler || !toggler.offsetParent) return;
+      var active = document.activeElement;
+      if (active !== toggler && !menu.contains(active)) return;
+      window.bootstrap.Collapse.getOrCreateInstance(menu, { toggle: false }).hide();
+      toggler.focus();
+    });
+  })();
+</script>

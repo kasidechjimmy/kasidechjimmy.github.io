@@ -1,0 +1,22 @@
+<% /*
+  Template for the Presentations list on the Research page
+  (data: research/presentations.yml): year | event, details.
+*/ %>
+<%
+  const filled = (value) => typeof value === "string" ? value.trim() !== "" : Boolean(value);
+%>
+<ul class="dated-list">
+<% for (const item of items) {
+  const joiner = filled(item.info) && String(item.info).trim().startsWith("(") ? " " : ", ";
+%>
+<li <%= metadataAttrs(item) %>>
+<span class="dated-year"><%= item.year %></span>
+<div class="dated-body">
+<p><strong><%= item.event %></strong><% if (filled(item.info)) { %><%- joiner %><%= item.info %><% } %></p>
+<% if (filled(item.detail)) { %>
+<p class="dated-detail"><%= item.detail %></p>
+<% } %>
+</div>
+</li>
+<% } %>
+</ul>

@@ -1,0 +1,41 @@
+---
+# Home page. The title is the name; it is read out by screen readers but not
+# shown, because the name already sits at the top of every page (with the
+# role line "PhD Researcher · University College Dublin", set in _quarto.yml).
+title: "Kasidech Somboonkittichai"
+description: "Kasidech Somboonkittichai, PhD researcher in Quantitative and Computational Social Science at the School of Politics and International Relations, University College Dublin."
+body-classes: page-home
+---
+
+::: {.home-intro}
+
+::: {.photo}
+![](images/profile.jpg){width="960" height="1200" fig-alt="Portrait of Kasidech Somboonkittichai"}
+:::
+
+::: {.affiliation}
+Quantitative and Computational Social Science
+
+School of Politics and International Relations (SPIRe)
+:::
+
+::: {.opening}
+I am a PhD researcher in Quantitative and Computational Social Science at the School of Politics and International Relations (SPIRe), University College Dublin, supported by the UCD Iseult Honohan Doctoral Scholarship. My research focuses on peace practices and processes in civil conflict, with a particular interest in peace negotiations and how these practices diffuse across conflicts. More broadly, I investigate how cross-border networks (including social and economic networks) shape peace outcomes, and how glocal crises (including climate shocks) shape the behaviour of rebel groups. I also bring a strong background in research methodology and computational social science.
+
+:::
+
+:::
+Methodologically, I use both observational data and text-as-data approaches to address key questions in civil conflict and to contribute to broader debates in international relations, comparative politics, and social science. My methods include network models, GIS, causal inference, and [text-as-data]{.nowrap} methods.
+
+Before UCD, I completed an MA in International Relations at Seoul National University, an MA in Conflict, Governance and International Development at the University of East Anglia, and a BA in Political Science (International Relations) at Chulalongkorn University. I am an affiliated student of the UCD Centre for Peace and Conflict Research and a member of the UCD Centre for Democracy Research.
+
+::: {.signposts}
+[Research](research.qmd)
+:   Publications and working papers on inclusive peace negotiations, rebel governance and power-sharing.
+
+[Teaching](teaching.qmd)
+:   Teaching at UCD in statistics, comparative politics and international relations.
+
+[CV](cv.qmd)
+:   Education, publications, presentations and awards.
+:::

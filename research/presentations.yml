@@ -1,0 +1,48 @@
+# Presentations on the Research page, newest first, worded as in the CV.
+#
+# Fields:
+#   year:   shown in the left column
+#   event:  shown in bold
+#   info:   follows the event on the same line (place, date, role)
+#   detail: a smaller muted line underneath (paper title, discussant)
+# Markdown works in every field, e.g. *italics*.
+
+- year: "2027"
+  event: "International Studies Association (ISA) Annual Convention"
+  info: "(accepted)"
+  detail: ""
+
+- year: "2027"
+  event: "Development Studies Association Ireland (DSAI) Annual Conference"
+  info: "(accepted)"
+  detail: ""
+
+- year: "2026"
+  event: "Political Studies Association of Ireland (PSAI) Annual Conference"
+  info: ""
+  detail: "*Looking Next Door: The Spatial Diffusion of Inclusion Provisions in Civil War Peace Agreements*"
+
+- year: "2026"
+  event: "Development Studies Association (DSA) Annual Conference"
+  info: ""
+  detail: ""
+
+- year: "2026"
+  event: "Violence, Instability, and Peace (VIP) Workshop"
+  info: "online, 7 October"
+  detail: "*Spreading Inclusivity: Network Channels and Inclusive Peace Negotiations in Civil Wars*; discussant: Sloan Lansdale (University of Maryland)"
+
+- year: "2026"
+  event: "Junior Scholars in Quantitative Conflict (JQCon) Workshop"
+  info: "online, 2 October"
+  detail: "*Spreading Inclusivity: Network Channels and Inclusive Peace Negotiations in Civil Wars*; discussant: J Andrés Gannon (Vanderbilt University)"
+
+- year: "2026"
+  event: "SPIRe PhD Workshop"
+  info: "University College Dublin, Ireland, 28 April"
+  detail: "discussant: Samuel Brazys (University College Dublin)"
+
+- year: "2026"
+  event: "UCD Centre for Peace and Conflict Research (CPCR) Talk"
+  info: "Invited Speaker, University College Dublin, Ireland, 14 April"
+  detail: "*Spreading Inclusivity: Network Channels and Inclusive Peace Negotiations in Civil Wars*"

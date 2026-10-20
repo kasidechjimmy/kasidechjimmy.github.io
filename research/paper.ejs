@@ -1,0 +1,58 @@
+<% /*
+  Template for the paper lists on the Research page (data: research/papers.yml).
+  Each line and link is shown only when its field is filled in.
+  Quarto renders the text fields as Markdown.
+*/ %>
+<%
+  const prefix = (templateParams && templateParams.prefix) || "paper";
+  const slug = (text) => String(text || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+  const filled = (value) => typeof value === "string" ? value.trim() !== "" : Boolean(value);
+  const links = [["doi", "DOI"], ["pdf", "PDF"], ["preprint", "Preprint"], ["slides", "Slides"]];
+%>
+<div class="paper-list">
+<% items.forEach((item, index) => {
+  const abstractId = "abstract-" + prefix + "-" + (index + 1) + "-" + slug(item.title);
+  const hasAbstract = filled(item.abstract);
+  const shownLinks = links.filter(([field]) => filled(item[field]));
+%>
+<article class="paper" <%= metadataAttrs(item) %>>
+<p class="paper-title"><%= item.title %></p>
+<% if (filled(item.coauthors)) { %>
+<p class="paper-coauthors">with <%= item.coauthors %></p>
+<% } %>
+<% if (filled(item.venue)) { %>
+<p class="paper-venue"><%= item.venue %></p>
+<% } %>
+<% if (filled(item.status)) { %>
+<p class="paper-status"><%= item.status %></p>
+<% } %>
+<% if (filled(item.note)) { %>
+<p class="paper-note"><%= item.note %></p>
+<% } %>
+<% if (shownLinks.length || hasAbstract) { %>
+<div class="paper-links">
+<% if (hasAbstract) { %>
+<button class="paper-link abstract-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#<%- abstractId %>" aria-expanded="false" aria-controls="<%- abstractId %>">Abstract</button>
+<% } %>
+<% for (const [field, label] of shownLinks) { %>
+<a class="paper-link" href="<%- item[field] %>"><%- label %></a>
+<% } %>
+</div>
+<% } %>
+<% if (hasAbstract) { %>
+<div class="collapse paper-abstract" id="<%- abstractId %>">
+<div class="paper-abstract-text">
+
+<%= item.abstract %>
+
+</div>
+</div>
+<% } %>
+</article>
+<% }) %>
+</div>

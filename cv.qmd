@@ -1,0 +1,42 @@
+---
+title: "Curriculum Vitae"
+description: "Curriculum vitae of Kasidech Somboonkittichai, PhD researcher in Quantitative and Computational Social Science at University College Dublin."
+# The CV itself is not written here. scripts/build-cv.R turns
+# ../Somboonkittichai_CV.qmd into cv/_cv-body.md (included below), writes the
+# "Updated" date to cv/_cv-updated.md and rebuilds files/Somboonkittichai_CV.pdf.
+# Edit the CV source, then render the site.
+---
+
+::: {.cv-header}
+
+::: {.cv-name}
+Kasidech Somboonkittichai
+:::
+
+::: {.cv-position}
+PhD Researcher in Quantitative and Computational Social Science
+:::
+
+::: {.cv-address}
+School of Politics and International Relations, Newman Building, University College Dublin, Belfield, Dublin 4, Ireland
+:::
+
+::: {.cv-contact}
+[kasidech.somboonkittichai@<wbr>ucdconnect.ie](mailto:kasidech.somboonkittichai@ucdconnect.ie){aria-label="kasidech.somboonkittichai@ucdconnect.ie"}\ [·]{.dot aria-hidden="true"} [ORCID [0009-0007-4228-9083](https://orcid.org/0009-0007-4228-9083)]{.nowrap}
+:::
+
+::: {.cv-keywords}
+Conflict & Peace · Climate · Inclusivity · Ethnicity · Rebel Governance · Diffusion · Computational Social Science
+:::
+
+::: {.cv-download}
+[Download PDF](files/Somboonkittichai_CV.pdf)
+
+{{< include cv/_cv-updated.md >}}
+:::
+
+:::
+
+::: {.cv-body}
+{{< include cv/_cv-body.md >}}
+:::

@@ -1,0 +1,45 @@
+---
+title: "Teaching"
+description: "Teaching by Kasidech Somboonkittichai at the School of Politics and International Relations, University College Dublin, in statistics, comparative politics and international relations."
+---
+
+::: {.opening}
+At UCD's School of Politics and International Relations I support teaching in statistics, comparative politics and international relations.
+:::
+
+## University College Dublin
+
+::: {.place-meta}
+School of Politics and International Relations (SPIRe) · 2025–
+:::
+
+::: {.teaching-role}
+### Teaching Assistant
+
+::: {.role-meta}
+POL40950 Introduction to Statistics
+:::
+
+Assisted with R scripts and statistics assignments, held weekly office hours, advised students on their research projects and delivered lectures.
+:::
+
+::: {.teaching-role}
+### Head Tutor
+
+::: {.role-meta}
+POL20020 Comparative Politics\
+INRL20040 International Relations: Introduction to Theories and Empirics
+:::
+
+Led two seminar groups; graded seminar essays, presentations and final-exam essays; drafted the essay marking rubric; supported module administration.
+:::
+
+## Outreach and workshops
+
+::: {.dated}
+2026
+:   **Workshop co-facilitator**, *International Environmental Policy Negotiations* simulation for visiting US high-school students, UCD College of Social Sciences and Law, 13 July
+
+2018
+:   **Intern**, *Tadamon Refugee Multicultural Council*, Al Shorouk, Egypt: taught English to refugees and organised workshops on refugees' rights
+:::

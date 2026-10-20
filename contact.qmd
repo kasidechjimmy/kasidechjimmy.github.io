@@ -1,0 +1,31 @@
+---
+title: "Contact"
+description: "How to contact Kasidech Somboonkittichai at the School of Politics and International Relations, University College Dublin."
+---
+
+::: {.contact-rows}
+
+## Email {.label}
+
+[kasidech.somboonkittichai@<wbr>ucdconnect.ie](mailto:kasidech.somboonkittichai@ucdconnect.ie){aria-label="kasidech.somboonkittichai@ucdconnect.ie"}
+
+## Office {.label}
+
+School of Politics and International Relations\
+Newman Building, University College Dublin\
+Belfield, Dublin 4, Ireland
+
+## Profiles {.label}
+
+::: {.inline-links}
+- [UCD SPIRe](https://www.ucd.ie/spire/about/phdcandidates/){rel="me"}
+- [ORCID](https://orcid.org/0009-0007-4228-9083){rel="me"}
+- [LinkedIn](https://www.linkedin.com/in/kasidech-somboonkittichai-b12189245){rel="me"}
+
+<!-- TODO: add these when the profile addresses are known, one per line in
+     the same form, inside the list above:
+     - [Google Scholar](URL){rel="me"}
+     - [Bluesky](URL){rel="me"} -->
+:::
+
+:::

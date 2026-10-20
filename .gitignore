@@ -1,0 +1,13 @@
+/.quarto/
+/_site/
+.DS_Store
+
+**/*.quarto_ipynb
+
+# Original photos (the iPhone HEIC files carry the GPS location). Only the
+# cleaned web copy, images/profile.jpg, belongs in the repository.
+*.heic
+*.HEIC
+
+# Build notes and plans: kept on this Mac only, not in the public repository.
+/docs/

@@ -1,0 +1,79 @@
+# Site configuration for Kasidech Somboonkittichai's academic website.
+# README.md explains where each piece of content lives and how to change it.
+
+project:
+  type: website
+  output-dir: _site
+  # Only the top-level pages are rendered, so docs/, README.md and the
+  # generated includes in cv/ never become pages of their own.
+  render:
+    - "*.qmd"
+  # Before every render: rebuild the HTML CV from ../Somboonkittichai_CV.qmd
+  # and, when the CV source is newer, the PDF in files/.
+  pre-render: scripts/build-cv.R
+  # Publish everything in files/ (the CV PDF) with the site, and the fonts
+  # folder, so the font licences travel with the font files.
+  resources:
+    - "files/"
+    - "fonts/"
+
+# Keep hyphenated words (power-sharing, text-as-data) on one line, so no word
+# ever looks cut in half at the end of a line (scripts/keep-compounds.lua).
+filters:
+  - scripts/keep-compounds.lua
+
+website:
+  title: "Kasidech Somboonkittichai"
+  description: "Kasidech Somboonkittichai, PhD researcher in Quantitative and Computational Social Science at the School of Politics and International Relations, University College Dublin."
+  # The site's address. It gives link previews absolute links and turns on
+  # the sitemap. The domain itself is set in the CNAME file.
+  site-url: "https://kasidechsomboonkittichai.com"
+  favicon: images/favicon.svg
+  search: false
+  open-graph:
+    locale: en_GB
+  # Link-preview tags for X/Twitter and other sites that read them.
+  twitter-card: true
+  navbar:
+    # The name at the top of every page, then the role line under it: edit
+    # the text between <span class="role-line"> and </span>.
+    title: 'Kasidech Somboonkittichai <span class="role-line">PhD Researcher · University College Dublin</span>'
+    # Keep the header in place: no hide-on-scroll behaviour.
+    pinned: true
+    # Below 768px wide the tabs fold into a "Menu" button.
+    collapse-below: md
+    # The tabs, in order. To add one, add a text/href pair here (see README.md).
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Research
+        href: research.qmd
+      - text: CV
+        href: cv.qmd
+      - text: Teaching
+        href: teaching.qmd
+      - text: Contact
+        href: contact.qmd
+
+lang: en-GB
+language:
+  # Accessible name of the phone menu button (matches its visible label).
+  toggle-navigation: "Menu"
+
+format:
+  html:
+    theme: theme.scss
+    # Each page tells search engines its one address, on the domain above.
+    canonical-url: true
+    # Self-hosted font: the @font-face rules for Source Serif 4.
+    css: fonts/fonts.css
+    # Page descriptions are used for search engines and link previews only.
+    hide-description: true
+    anchor-sections: false
+    # The site has no code blocks, so skip the copy-button script.
+    code-copy: false
+    # No maths on this site, so do not load MathJax.
+    html-math-method: plain
+    include-in-header: _head.html
+    include-before-body: _skip-link.html
+    include-after-body: _footer.html

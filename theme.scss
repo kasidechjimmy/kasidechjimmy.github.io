@@ -1,0 +1,943 @@
+/*-- scss:defaults --*/
+
+// ===========================================================================
+// Palette. Every colour on the site comes from these five lines.
+// For a white page, change $paper to #FFFFFF (nothing else).
+// ===========================================================================
+$paper:    #FCFAF6;  // page background (ivory)
+$ink:      #191714;  // text
+$ink-soft: #57524A;  // secondary text: the role line, dates, notes
+$hairline: #DDD6CA;  // the thin rules between parts of a page
+$oxblood:  #8B1E2D;  // the one accent colour: links and the current-tab mark
+
+// One typeface for everything, self-hosted in fonts/ (fonts/fonts.css).
+// The others are fallbacks while it loads (Garamond-like faces first, as
+// the sizes below are set for EB Garamond's small lowercase letters).
+$serif: "EB Garamond", Garamond, "Hoefler Text", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+
+// The page is a single column of text.
+$measure:   62.5rem;  // width of the text column (1000px; the page is 1080px with the side space)
+$side:      1.125rem; // space beside the column on phones
+$side-wide: 2.5rem;   // ... and from 640px wide
+
+// Bootstrap and Quarto settings derived from the values above.
+$font-size-root: 16px;
+$font-size-base: 1.125rem;
+$line-height-base: 1.5;
+$font-family-sans-serif: $serif;
+$font-family-base: $serif;
+$headings-font-family: $serif;
+$headings-font-weight: 500;
+$headings-line-height: 1.15;
+$headings-color: $ink;
+$body-bg: $paper;
+$body-color: $ink;
+$primary: $oxblood;
+$link-color: $oxblood;
+$link-hover-color: $oxblood;
+$border-color: $hairline;
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $ink;
+$footer-bg: $paper;
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+
+/*-- scss:rules --*/
+
+// The same values as CSS custom properties, used by every rule below.
+:root {
+  --paper: #{$paper};
+  --ink: #{$ink};
+  --ink-soft: #{$ink-soft};
+  --hairline: #{$hairline};
+  --accent-ink: #{$oxblood};
+  // inspect() keeps the quotes: "Source Serif 4" is not a valid name without them.
+  --serif: #{inspect($serif)};
+  --measure: #{$measure};
+  --side: #{$side};
+  // The column plus the space on both sides: the width of every page part.
+  --page: calc(var(--measure) + 2 * var(--side));
+  // Space above the name at the top of every page.
+  --head-top: clamp(1.4rem, 4vw, 2.6rem);
+  color-scheme: light;
+}
+@media (min-width: 40em) {
+  :root { --side: #{$side-wide}; }
+}
+
+// ---------------------------------------------------------------------------
+// Type
+// ---------------------------------------------------------------------------
+
+html {
+  -webkit-text-size-adjust: 100%;
+  // Room for the scrollbar on every page, so the header does not shift
+  // sideways between short and long pages (Windows-style scrollbars).
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  // 20px on phones, growing with the window to 22px on wide screens.
+  // EB Garamond's lowercase letters are small for its size: at these sizes
+  // they are about as tall as Source Serif 4's were at 17px and 19px.
+  font-size: clamp(1.25rem, 1.144rem + 0.426vw, 1.375rem);
+  line-height: 1.5;
+  font-kerning: normal;
+  // The footer sits at the bottom of short pages.
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  color: var(--ink);
+}
+
+p { margin: 0 0 0.9em; }
+strong, b { font-weight: 600; }
+
+// Paragraphs avoid a single word on their last line; headings are
+// balanced. Browsers without text-wrap support keep their usual breaks.
+#quarto-document-content p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+// Justified text. Paragraphs, list items and CV entries are set flush on both
+// sides. Words are never split with a hyphen at the end of a line (Jimmy's
+// choice), so the browser only widens the spaces between whole words.
+// Headings, titles, citation lines and the footer stay left-aligned. On
+// phones (below 600px wide) all text stays left-aligned, because justified
+// lines that narrow leave wide gaps between words.
+// To switch justification off everywhere, change true to false here.
+$justify-text: true;
+@if $justify-text {
+  @media (min-width: 600px) {
+    #quarto-document-content :is(p, li, dd, .dated-body, .dated-detail) {
+      text-align: justify;
+    }
+  }
+  // Keep these left-aligned: the affiliation lines beside the photo, paper
+  // titles and citation lines read badly when stretched.
+  #quarto-document-content :is(.affiliation, .affiliation p, .paper-title, .paper-venue, .paper-status, .paper-coauthors, .paper-links) {
+    text-align: start;
+  }
+}
+// No word is ever split with an added hyphen, anywhere on the site.
+#quarto-document-content, .colophon {
+  -webkit-hyphens: manual;
+  hyphens: manual;
+}
+
+// Keeps a label and its value on one line, e.g. "ORCID 0009-...".
+.nowrap { white-space: nowrap; }
+
+// Links: the accent colour, always underlined.
+a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.17em;
+  text-decoration-color: color-mix(in srgb, var(--accent-ink) 55%, transparent);
+}
+a:hover {
+  color: var(--accent-ink);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 0.1em;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 0.18em;
+  box-shadow: none;
+}
+#quarto-document-content:focus { outline: none; }
+
+::selection { background: color-mix(in srgb, var(--accent-ink) 16%, var(--paper)); }
+
+img { max-width: 100%; height: auto; }
+
+// Optional black-and-white photo: add .mono inside the image's braces.
+.mono { filter: grayscale(1); }
+
+// "Skip to content": hidden until it receives keyboard focus.
+.skip-to-content {
+  position: absolute;
+  top: 0.75rem;
+  left: var(--side);
+  z-index: 2000;
+  padding: 0.45rem 0.85rem;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transform: translateY(-300%);
+}
+.skip-to-content:focus { transform: none; color: var(--ink); }
+
+// ---------------------------------------------------------------------------
+// Page frame: one centred column. Quarto's page grid is not used, and the
+// header is a normal block, so it never sits on top of the text.
+// ---------------------------------------------------------------------------
+
+body.nav-fixed { padding-top: 0 !important; }
+
+#quarto-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-height: 0 !important;
+}
+#quarto-content > main.content {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--side) clamp(3rem, 7vw, 4.75rem);
+}
+#quarto-content > .colophon { flex: none; }
+
+// ---------------------------------------------------------------------------
+// Header: the name and role line on the left, the tabs on the right, and a
+// hairline underneath, all as wide as the text column.
+// ---------------------------------------------------------------------------
+
+#quarto-header {
+  position: relative;
+  z-index: 10;
+  background: var(--paper);
+  border: 0;
+}
+
+#quarto-header .navbar {
+  color-scheme: light;
+  padding: 0;
+  background: var(--paper);
+  font-family: var(--serif);
+}
+
+#quarto-header .navbar-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  // Where supported, the tabs share a baseline with the role line.
+  align-items: last baseline;
+  justify-content: space-between;
+  gap: 0.6rem 2rem;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: var(--head-top) var(--side) 1.15rem;
+}
+// The hairline under the header (as wide as the text, not the window).
+#quarto-header .navbar-container::after {
+  content: "";
+  position: absolute;
+  left: var(--side);
+  right: var(--side);
+  bottom: 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+#quarto-header .navbar-brand-container {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 !important;
+}
+#quarto-header .navbar-brand {
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  white-space: normal;
+  color: var(--ink);
+  text-decoration: none;
+}
+#quarto-header .navbar-title {
+  display: block;
+  // The name and the tabs are as large as fits: the name on one line on a
+  // 390px phone, and the tabs beside it on wide screens.
+  font-size: clamp(1.455rem, 1.287rem + 0.579vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.006em;
+  color: var(--ink);
+  // Lets the long surname break rather than overflow on very narrow
+  // screens or with enlarged text spacing.
+  overflow-wrap: anywhere;
+}
+// The role line (its text is in _quarto.yml, under navbar: title:).
+#quarto-header .role-line {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.095rem, 1.05rem + 0.167vw, 1.18rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.27;
+}
+
+#quarto-header .navbar-collapse { flex-grow: 0; }
+#quarto-header .quarto-navbar-tools { display: none; }
+
+#quarto-header .navbar-nav {
+  flex-wrap: wrap;
+  gap: 0.1rem 1.45rem;
+  margin: 0 !important;
+  padding: 0;
+}
+#quarto-header .nav-item { padding: 0; }
+
+#quarto-header .navbar-nav .nav-link {
+  padding: 0.3rem 0;
+  color: var(--ink);
+  font-size: 1.19rem;
+  line-height: 1.18;
+  text-decoration: none;
+  text-underline-offset: 0.4em;
+}
+#quarto-header .navbar-nav .nav-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--ink-soft);
+}
+// The current page: a short accent rule under the tab's name.
+#quarto-header .navbar-nav .nav-link.active,
+#quarto-header .navbar-nav .nav-link[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent-ink);
+}
+// Bootstrap removes the outline on focused tabs; put the site's ring back.
+#quarto-header .navbar-nav .nav-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 0.2rem;
+  box-shadow: none;
+}
+
+// Phone: the tabs fold into a "Menu" button beside the name (placed in the
+// phone rules below).
+#quarto-header .navbar-toggler {
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;  // a comfortable touch target
+  padding: 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.225rem;
+  font-style: italic;
+  line-height: 1;
+}
+#quarto-header .navbar-toggler:focus { box-shadow: none; }
+#quarto-header .navbar-toggler:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+}
+// The visible label matches the button's accessible name, "Menu".
+#quarto-header .navbar-toggler::after { content: "Menu"; }
+
+// Two thin lines that turn into a cross while the menu is open. Drawn with
+// borders, so Windows contrast themes keep them visible.
+#quarto-header .navbar-toggler-icon {
+  position: relative;
+  display: block;
+  width: 1.05rem;
+  height: 0.5rem;
+  background: none;
+}
+#quarto-header .navbar-toggler-icon::before,
+#quarto-header .navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-top: 1.5px solid currentColor;
+  transition: transform 0.2s ease, top 0.2s ease;
+}
+#quarto-header .navbar-toggler-icon::before { top: 0; }
+#quarto-header .navbar-toggler-icon::after { top: calc(100% - 1.5px); }
+#quarto-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  top: calc(50% - 0.75px);
+  transform: rotate(45deg);
+}
+#quarto-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  top: calc(50% - 0.75px);
+  transform: rotate(-45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  #quarto-header .navbar-toggler-icon::before,
+  #quarto-header .navbar-toggler-icon::after { transition: none; }
+}
+
+@media (max-width: 767.98px) {
+  #quarto-header .navbar-brand-container { flex: 1 0 100%; }
+  // The name keeps the top-right corner free for the Menu button; the role
+  // line runs underneath both.
+  #quarto-header .navbar-title {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 5.9rem;
+  }
+  #quarto-header .role-line { grid-column: 1 / -1; }
+  #quarto-header .navbar-toggler {
+    display: inline-flex;
+    position: absolute;
+    top: calc(var(--head-top) - 0.62rem);
+    right: calc(var(--side) - 0.5rem);
+    margin: 0;
+  }
+  #quarto-header .navbar-collapse { order: 3; flex: 0 0 100%; }
+  #quarto-header .navbar-nav {
+    flex-direction: column;
+    width: 100%;  // full width also when JavaScript is off
+    gap: 0;
+    padding: 0.5rem 0 0;
+  }
+  #quarto-header .navbar-nav .nav-link {
+    padding: 0.62rem 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 1.31rem;
+  }
+  // The menu list scrolls, which would clip a ring drawn outside the link;
+  // draw it inside instead.
+  #quarto-header .navbar-nav .nav-link:focus-visible { outline-offset: -2px; }
+}
+
+// ---------------------------------------------------------------------------
+// Page titles (each page's `title:`): left-aligned, set large.
+// ---------------------------------------------------------------------------
+
+#title-block-header.quarto-title-block {
+  margin: 0;
+  padding: clamp(2.25rem, 6vw, 3.6rem) 0 clamp(1.1rem, 3vw, 1.65rem);
+  background: none;
+  border: 0;
+  text-align: left;
+}
+#title-block-header .quarto-title { margin: 0; }
+#title-block-header h1.title {
+  margin: 0;
+  font-size: clamp(2.44rem, 1.96rem + 2.04vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.014em;
+}
+// (As specific as Quarto's own rule, which shows this empty block.)
+#title-block-header.quarto-title-block.default .quarto-title-meta { display: none; }
+
+// The home page keeps its title (the name) for screen readers only.
+.page-home #title-block-header.quarto-title-block {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Running text
+// ---------------------------------------------------------------------------
+
+// The opening paragraph of a page, set a size larger.
+// The opening paragraph on Home: set exactly like the rest of the bio
+// (Jimmy preferred it without the larger "lead" size).
+.opening { margin: 0 0 1.4rem; }
+.opening > :last-child { margin-bottom: 0; }
+
+// Section headings: small spaced capitals under a hairline.
+#quarto-document-content h2 {
+  margin: 2.9rem 0 1.15rem;
+  padding: 1.05rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.81rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.115em;
+  text-transform: uppercase;
+}
+// Below 992px Quarto adds a top margin to the first h2 of the first section;
+// keep the spacing the same at every width.
+#quarto-content section:first-of-type h2:first-of-type { margin-top: 2.9rem; }
+
+// Entry headings (Teaching): italic.
+#quarto-document-content h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.22;
+}
+
+// ---------------------------------------------------------------------------
+// Home page
+// ---------------------------------------------------------------------------
+
+.page-home #quarto-content > main.content { padding-top: clamp(2.25rem, 6vw, 3.6rem); }
+
+// The opening: the affiliation lines and the first paragraph on the left,
+// the photo on the right. On phones the photo sits beside the affiliation
+// lines, above the paragraph.
+.home-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(15rem, 37%, 21rem);
+  grid-template-areas:
+    "aff  photo"
+    "lead photo";
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  column-gap: clamp(1.5rem, 4.5vw, 2.6rem);
+  margin: 0 0 1.6rem;
+}
+.home-intro > .photo { grid-area: photo; }
+.home-intro > .affiliation { grid-area: aff; }
+.home-intro > .opening { grid-area: lead; margin: 0; }
+
+// From 640px wide the photo floats on the right and the whole bio flows
+// around it, so no empty space is left beside the (tall) photo.
+@media (min-width: 40em) {
+  .home-intro { display: block; margin: 0; }
+  .home-intro > .photo {
+    float: right;
+    width: clamp(15rem, 36%, 24rem);
+    margin: 0.35rem 0 1rem clamp(1.5rem, 4.5vw, 2.6rem);
+  }
+  .home-intro > .opening { margin: 0 0 0.9em; }
+  .signposts { clear: both; }
+}
+
+// The photo, in a fine frame.
+.photo {
+  margin: 0.35rem 0 0;
+  padding: 0.3rem;
+  border: 1px solid var(--hairline);
+}
+.photo p { margin: 0; }
+.photo img { display: block; width: 100%; height: auto; }
+
+// The two affiliation lines above the opening paragraph.
+.affiliation {
+  margin: 0 0 1.1rem;
+  color: var(--ink-soft);
+  font-size: 1.18rem;
+  font-style: italic;
+  line-height: 1.36;
+}
+.affiliation p { margin: 0; }
+
+@media (max-width: 39.99em) {
+  .home-intro {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    grid-template-areas:
+      "photo aff"
+      "lead  lead";
+    grid-template-rows: auto auto;
+    align-items: end;
+    column-gap: 1.1rem;
+  }
+  .photo { margin: 0 0 1.4rem; }
+  .affiliation { margin: 0 0 1.4rem; font-size: 1.1rem; }
+}
+
+// "Research / Teaching / CV": a short typeset list of the other pages.
+.signposts {
+  margin: 2.6rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--hairline);
+}
+.signposts dl {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.55rem 1.25rem;
+  margin: 0;
+}
+.signposts dt { margin: 0; font-weight: 400; }
+.signposts dd { margin: 0; }
+.signposts dd p { margin: 0; }
+@media (max-width: 29.99em) {
+  .signposts dl { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .signposts dd { margin-bottom: 0.95rem; }
+  .signposts dd:last-child { margin-bottom: 0; }
+}
+
+// ---------------------------------------------------------------------------
+// Research: papers (from research/papers.yml) and presentations
+// ---------------------------------------------------------------------------
+
+.paper { margin: 0 0 1.6rem; }
+.paper:last-child { margin-bottom: 0; }
+.paper p { margin: 0; }
+.paper-title { font-weight: 600; line-height: 1.31; }
+.paper-coauthors { margin-top: 0.1rem !important; }
+.paper-status { color: var(--ink-soft); font-style: italic; }
+.paper-note {
+  margin-top: 0.15rem !important;
+  color: var(--ink-soft);
+  font-size: 0.9em;
+  line-height: 1.41;
+}
+.paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.1rem;
+  margin-top: 0.15rem;
+}
+// Pandoc wraps the links in a paragraph; let them sit in the flex row.
+.paper-links p { display: contents; }
+// DOI, PDF, Abstract...: small spaced capitals, underlined like any link.
+.paper-link {
+  display: inline-block;
+  padding: 0.3rem 0;
+  border: 0;
+  background: none;
+  color: var(--accent-ink);
+  font-family: var(--serif);
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 0.095em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: color-mix(in srgb, var(--accent-ink) 55%, transparent);
+  cursor: pointer;
+}
+.paper-link:hover { text-decoration-color: currentColor; }
+// A plus that turns into a minus while the abstract is open (hidden from
+// screen readers, which hear "expanded" or "collapsed" instead).
+.abstract-toggle::after { content: "\00a0+"; content: "\00a0+" / ""; }
+.abstract-toggle[aria-expanded="true"]::after { content: "\00a0\2212"; content: "\00a0\2212" / ""; }
+.paper-abstract-text {
+  margin: 0.5rem 0 0.25rem;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 1px solid var(--hairline);
+  font-size: 0.95em;
+  line-height: 1.48;
+}
+.paper-abstract-text p { margin: 0 0 0.75em; }
+.paper-abstract-text p:last-child { margin-bottom: 0; }
+
+// Year | entry rows: the Presentations list (research/presentation.ejs) and
+// the Teaching page's Outreach list (a Markdown definition list in .dated).
+@mixin dated-rows($year-width) {
+  display: grid;
+  grid-template-columns: $year-width minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+@mixin dated-year {
+  color: var(--ink-soft);
+  font-size: 0.94em;
+  font-variant-numeric: tabular-nums;
+}
+
+ul.dated-list { list-style: none; margin: 0; padding: 0; }
+ul.dated-list > li {
+  @include dated-rows(3.25rem);
+  margin-bottom: 0.8rem;
+}
+ul.dated-list > li:last-child { margin-bottom: 0; }
+.dated-year { @include dated-year; }
+.dated-body p { margin: 0; }
+.dated-detail {
+  margin-top: 0.1rem !important;
+  color: var(--ink-soft);
+  font-size: 0.9em;
+  line-height: 1.41;
+}
+
+.dated dl {
+  @include dated-rows(3.25rem);
+  row-gap: 0.8rem;
+}
+.dated dt { @include dated-year; font-weight: 400; margin: 0; }
+.dated dd { margin: 0; }
+.dated dd p { margin: 0; }
+
+@media (max-width: 29.99em) {
+  ul.dated-list > li,
+  .dated dl { grid-template-columns: 2.9rem minmax(0, 1fr); column-gap: 0.9rem; }
+}
+
+// A listing adds no space after its last item, so the next heading keeps
+// its usual distance.
+.quarto-listing { padding-bottom: 0; }
+
+// ---------------------------------------------------------------------------
+// Teaching
+// ---------------------------------------------------------------------------
+
+// "School of Politics ... · 2025–" under the University College Dublin heading.
+.place-meta {
+  margin: -0.35rem 0 1.6rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.place-meta p { margin: 0; }
+
+.teaching-role { margin: 0 0 1.75rem; }
+.teaching-role:last-child { margin-bottom: 0; }
+.teaching-role > :last-child { margin-bottom: 0; }
+.role-meta {
+  margin: 0 0 0.55rem;
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.41;
+}
+.role-meta p { margin: 0; }
+
+// ---------------------------------------------------------------------------
+// Contact
+// ---------------------------------------------------------------------------
+
+// Label | value rows (Email, Office, Profiles), like an address block.
+.contact-rows {
+  margin: 2.4rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.contact-rows > section {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1.5rem;
+  padding: 0.85rem 0;
+}
+.contact-rows > section > * { grid-column: 2; margin: 0; }
+.contact-rows p { margin: 0; }
+// The labels: spaced capitals, without the section rule.
+#quarto-document-content .contact-rows h2.label,
+#quarto-content .contact-rows section:first-of-type h2.label:first-of-type {
+  grid-column: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink-soft);
+}
+@media (max-width: 29.99em) {
+  .contact-rows > section { grid-template-columns: minmax(0, 1fr); }
+  .contact-rows > section > * { grid-column: 1; }
+  #quarto-document-content .contact-rows h2.label,
+  #quarto-content .contact-rows section:first-of-type h2.label:first-of-type {
+    margin-bottom: 0.3rem;
+  }
+}
+
+// Profile links in one line, separated by middle dots (CSS adds the dots,
+// hidden from screen readers).
+.inline-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.inline-links li { margin: 0; }
+.inline-links li + li::before {
+  content: "\00b7";
+  content: "\00b7" / "";
+  margin: 0 0.62em;
+  color: var(--ink-soft);
+}
+
+// Email addresses break only after their "@" (a <wbr> in the page source).
+// Below 300px wide, with enlarged text spacing, an address can be wider than
+// its line; it may then break anywhere rather than stick out.
+@media (max-width: 299.98px) {
+  a[href^="mailto:"] { overflow-wrap: break-word; }
+}
+
+// ---------------------------------------------------------------------------
+// CV page
+// ---------------------------------------------------------------------------
+
+.cv-header { margin: 0.5rem 0 0; }
+.cv-header p { margin: 0; }
+.cv-name {
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 1.17;
+  overflow-wrap: anywhere;  // as the name in the header
+}
+.cv-position { margin-top: 0.15rem; font-style: italic; }
+.cv-address,
+.cv-contact { color: var(--ink-soft); font-size: 0.95em; line-height: 1.45; }
+.cv-address { margin-top: 0.5rem; }
+.cv-contact { color: var(--ink); }
+.cv-contact .dot { margin: 0 0.3em; color: var(--ink-soft); }
+// The line breaks only after the email's "@" (<wbr>) or after the dot;
+// "ORCID" and its number stay together, but may wrap inside if the pair is
+// wider than the whole line (enlarged text spacing on very narrow screens).
+.cv-contact .nowrap { white-space: normal; display: inline-block; }
+.cv-keywords {
+  margin-top: 0.7rem;
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  font-style: italic;
+  line-height: 1.45;
+}
+.cv-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 1.1rem;
+  margin-top: 0.9rem;
+}
+.cv-download p { margin: 0; }
+.cv-updated { color: var(--ink-soft); font-size: 0.9em; }
+
+#quarto-document-content .cv-body {
+  // Headings come in capitals from the CV source; they use the site's
+  // section-heading style (spaced capitals under a hairline).
+  h3 {
+    margin: 1.6rem 0 0.8rem;
+    color: var(--ink-soft);
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.105em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  h2 + section > h3:first-child { margin-top: 0.4rem; }
+
+  // "*'NS' indicates near submission", from \cvnote{} in the CV source.
+  .cv-note {
+    margin-left: 0.4rem;
+    color: var(--ink-soft);
+    font-size: 1.38em;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  @media (max-width: 34.99em) {
+    .cv-note { display: block; margin: 0.15rem 0 0; }
+  }
+
+  // Year | entry rows (Markdown definition lists in the CV source).
+  dl {
+    display: grid;
+    grid-template-columns: 8.4rem minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: 1.4rem;
+    row-gap: 0.75rem;
+    margin: 0 0 1.1rem;
+  }
+  dt {
+    grid-column: 1;
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.94em;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+  }
+  dd { grid-column: 2; margin: 0; }
+  dd > p { margin: 0; }
+  dd > p + p { margin-top: 0.3rem; }
+  > :last-child dl { margin-bottom: 0; }
+  @media (max-width: 34.99em) {
+    dl { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+    dt { margin-top: 0.85rem; }
+    dt:first-child { margin-top: 0; }
+    dd { grid-column: 1; }
+  }
+
+  // Detail lines under an entry (Markdown blockquotes in the CV source).
+  blockquote,
+  blockquote.blockquote {
+    margin: 0.2rem 0 0;
+    padding: 0;
+    border: 0;
+    color: var(--ink-soft);
+    font-size: 0.92em;
+    line-height: 1.43;
+  }
+  blockquote p { margin: 0; }
+  blockquote strong { color: var(--ink); }
+  blockquote ul { margin: 0.25rem 0 0; padding-left: 1.05rem; }
+  blockquote li { margin: 0 0 0.3rem; }
+  blockquote li:last-child { margin-bottom: 0; }
+  blockquote li::marker { color: var(--ink-soft); }
+}
+
+// ---------------------------------------------------------------------------
+// Footer (from _footer.html): one line of links and the copyright line.
+// ---------------------------------------------------------------------------
+
+// (The ID selector outranks Quarto's `#quarto-content > *` padding rule.)
+#quarto-content > .colophon,
+.colophon {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+}
+.colophon-inner {
+  position: relative;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 1.3rem var(--side) 2.6rem;
+}
+// The hairline above the footer (as wide as the text column).
+.colophon-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--side);
+  right: var(--side);
+  border-top: 1px solid var(--hairline);
+}
+.colophon-links {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 0.3rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1.18rem;
+}
+.colophon-links li { margin: 0; }
+.colophon-links li + li::before {
+  content: "\00b7";
+  content: "\00b7" / "";
+  margin: 0 0.55em;
+  color: var(--ink-soft);
+}
+// Each link is at least 24px tall, an easy target.
+.colophon-links a { display: inline-block; padding: 0.2rem 0; }
+.colophon-note {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+.colophon-note .dot { margin: 0 0.15em; }
+
+// ---------------------------------------------------------------------------
+// Touch screens: tabs at least 44px tall from 768px (the phone menu rows are
+// taller already).
+// ---------------------------------------------------------------------------
+
+@media (pointer: coarse) and (min-width: 768px) {
+  #quarto-header .navbar-nav .nav-link { padding-block: 0.65rem; }
+}
