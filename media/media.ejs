@@ -1,0 +1,45 @@
+<% /*
+  Template for the two lists on the Media page (data: media/media.yml):
+  year | title (a link), English translation, kind · outlet, note.
+  An item with an empty title is left out.
+  In these templates the tag with "=" inserts text as it is (so Markdown in
+  a field still works) and the tag with "-" escapes it.
+*/ %>
+<%
+  const filled = (value) => typeof value === "string" ? value.trim() !== "" : Boolean(value);
+  // keep-whole: words (separated by commas) that must never be split at the
+  // end of a line. Browsers sometimes split a Thai word, such as a name they
+  // do not know; each listed word is wrapped in <span class="nowrap">.
+  const keepWhole = (text, words) => {
+    let out = String(text);
+    if (!filled(words)) return out;
+    const list = String(words).split(",").map((w) => w.trim()).filter(Boolean)
+      .sort((a, b) => b.length - a.length);
+    for (const w of list) out = out.split(w).join('<span class="nowrap">' + w + '</span>');
+    return out;
+  };
+%>
+<ul class="dated-list media-list">
+<% for (const item of items) {
+  if (!filled(item.title)) continue;
+  const lang = item.language === "th" ? ' lang="th"' : "";
+  const title = keepWhole(item.title, item["keep-whole"]);
+  const source = [item.kind, item.outlet].filter(filled).join(" · ");
+%>
+<li <%= metadataAttrs(item) %>>
+<span class="dated-year"><%= item.year %></span>
+<div class="dated-body">
+<p class="media-title"<%= lang %>><% if (filled(item.url)) { %><a href="<%= item.url %>"><%= title %></a><% } else { %><%= title %><% } %></p>
+<% if (filled(item.translation)) { %>
+<p class="media-gloss"><%= item.translation %></p>
+<% } %>
+<% if (filled(source)) { %>
+<p class="media-outlet"><%= source %></p>
+<% } %>
+<% if (filled(item.note)) { %>
+<p class="dated-detail"><%= item.note %></p>
+<% } %>
+</div>
+</li>
+<% } %>
+</ul>

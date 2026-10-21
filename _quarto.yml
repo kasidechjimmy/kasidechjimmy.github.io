@@ -52,6 +52,8 @@ website:
         href: cv.qmd
       - text: Teaching
         href: teaching.qmd
+      - text: Media
+        href: media.qmd
       - text: Contact
         href: contact.qmd
 

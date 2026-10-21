@@ -1,0 +1,61 @@
+# Items on the Media page, newest first within each language.
+#
+# Fields (leave a field empty, "", and it is simply not shown):
+#   language:    en  -> listed under "In English"
+#                th  -> listed under "ภาษาไทย · In Thai"
+#   year:        shown in the left column
+#   title:       the headline as published; it links to url. An item with an
+#                empty title is not shown at all.
+#   translation: for a Thai item, the title in English (shown in italics)
+#   kind:        what it is, e.g. "Interview"; shown before the outlet
+#   outlet:      where it appeared, e.g. "Dek-D"
+#   note:        an optional short line underneath
+#   url:         the full web address
+#   keep-whole:  words in the title that must never be split at the end of a
+#                line, separated by commas, e.g. "จิมมี่, สถานทูต". Browsers
+#                split Thai text into words by themselves and sometimes cut a
+#                word they do not know, such as a name.
+# Markdown works in every field, e.g. *italics*.
+
+- language: en
+  # TODO: year assumed from the "Award Winners 2024-25" list; change if needed.
+  year: "2025"
+  title: "SPIRe Student Awards [2024–25]{.nowrap}"
+  translation: ""
+  kind: ""
+  outlet: "UCD School of Politics and International Relations"
+  note: "Named among the recipients of the Iseult Honohan Doctoral Scholarship."
+  url: "https://www.ucd.ie/spire/study/spirestudentawards/"
+
+# Dek-D interviews: titles as published; dates from Dek-D (Thai calendar
+# years 2567, 2565 and 2562). The English translations were drafted by
+# Claude for Jimmy to check.
+- language: th
+  year: "2024"
+  title: "'พี่จิมมี่' ดีกรีเด็กทุนเต็มจำนวนเกาหลีและอังกฤษ กับรสชาติชีวิตการเรียนรัฐศาสตร์ใน 3 ประเทศ!"
+  translation: "Jimmy, a full-scholarship student in Korea and the UK, on studying political science in three countries"
+  kind: "Interview"
+  outlet: "Dek-D"
+  note: ""
+  url: "https://www.dek-d.com/studyabroad/64055/"
+  keep-whole: "จิมมี่"
+
+- language: th
+  year: "2022"
+  title: "รีวิวพิชิตสองทุนรวด! ‘จิมมี่’ เด็กทุน POSCO 2021 เรียนฟรีที่เกาหลีและค่าใช้จ่ายส่วนตัว (ติด ม.SKY) + ทุนอังกฤษ U.of East Anglia"
+  translation: "Winning two scholarships at once: Jimmy, a POSCO 2021 scholar with free tuition and living costs in Korea (admitted to a SKY university), plus a UK scholarship at the University of East Anglia"
+  kind: "Interview"
+  outlet: "Dek-D"
+  note: ""
+  url: "https://www.dek-d.com/studyabroad/60719/"
+  keep-whole: "จิมมี่, ค่าใช้จ่าย, ส่วนตัว"
+
+- language: th
+  year: "2019"
+  title: "ชีวิตแลกเปลี่ยนของ ‘จิมมี่’ ที่ 'Sciences Po' ม.ดังในฝรั่งเศส & รีวิวฝึกงานที่สถานทูตไทยในปารีส!"
+  translation: "Jimmy's exchange life at Sciences Po, a renowned French university, and his internship at the Thai Embassy in Paris"
+  kind: "Interview"
+  outlet: "Dek-D"
+  note: ""
+  url: "https://www.dek-d.com/studyabroad/53425/"
+  keep-whole: "จิมมี่, สถานทูต"

@@ -1,0 +1,29 @@
+---
+title: "Media"
+description: "Interviews and news about Kasidech Somboonkittichai, in English and Thai."
+# The two lists below are filled from media/media.yml: edit that file to
+# add, change or remove an item (the notes at its top explain each field).
+listing:
+  - id: media-en
+    contents: media/media.yml
+    template: media/media.ejs
+    sort: false
+    include:
+      language: en
+  - id: media-th
+    contents: media/media.yml
+    template: media/media.ejs
+    sort: false
+    include:
+      language: th
+---
+
+## In English
+
+::: {#media-en}
+:::
+
+## [ภาษาไทย]{.th-part lang="th"} · In Thai
+
+::: {#media-th}
+:::

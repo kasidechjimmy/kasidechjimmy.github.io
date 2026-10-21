@@ -10,10 +10,11 @@ $ink-soft: #57524A;  // secondary text: the role line, dates, notes
 $hairline: #DDD6CA;  // the thin rules between parts of a page
 $oxblood:  #8B1E2D;  // the one accent colour: links and the current-tab mark
 
-// One typeface for everything, self-hosted in fonts/ (fonts/fonts.css).
+// One typeface for everything, self-hosted in fonts/ (fonts/fonts.css),
+// with Trirong for Thai letters, which EB Garamond does not have.
 // The others are fallbacks while it loads (Garamond-like faces first, as
 // the sizes below are set for EB Garamond's small lowercase letters).
-$serif: "EB Garamond", Garamond, "Hoefler Text", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+$serif: "EB Garamond", "Trirong", Garamond, "Hoefler Text", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 
 // The page is a single column of text.
 $measure:   62.5rem;  // width of the text column (1000px; the page is 1080px with the side space)
@@ -123,7 +124,7 @@ $justify-text: true;
   }
   // Keep these left-aligned: the affiliation lines beside the photo, paper
   // titles and citation lines read badly when stretched.
-  #quarto-document-content :is(.affiliation, .affiliation p, .paper-title, .paper-venue, .paper-status, .paper-coauthors, .paper-links) {
+  #quarto-document-content :is(.affiliation, .affiliation p, .paper-title, .paper-venue, .paper-status, .paper-coauthors, .paper-links, .media-title, .media-gloss, .media-outlet) {
     text-align: start;
   }
 }
@@ -675,6 +676,23 @@ ul.dated-list > li:last-child { margin-bottom: 0; }
   ul.dated-list > li,
   .dated dl { grid-template-columns: 2.9rem minmax(0, 1fr); column-gap: 0.9rem; }
 }
+
+// ---------------------------------------------------------------------------
+// Media: interviews and news (from media/media.yml), listed like the
+// Presentations: year | title, English translation, kind and outlet, note.
+// ---------------------------------------------------------------------------
+
+// Thai has no capital letters, and letter-spacing pulls its stacked vowel and
+// tone marks apart, so Thai text keeps normal spacing (as in the headings).
+:lang(th) { letter-spacing: 0; }
+.th-part { text-transform: none; }
+
+ul.media-list > li { margin-bottom: 1.15rem; }
+.media-title { font-weight: 600; line-height: 1.38; }
+// Bootstrap gives every link the normal weight; the title keeps its own.
+.media-title a { font-weight: inherit; }
+.media-gloss { color: var(--ink-soft); font-size: 0.94em; font-style: italic; }
+.media-outlet { color: var(--ink-soft); font-size: 0.94em; }
 
 // A listing adds no space after its last item, so the next heading keeps
 // its usual distance.
