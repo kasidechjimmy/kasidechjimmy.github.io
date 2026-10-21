@@ -261,9 +261,9 @@ body.nav-fixed { padding-top: 0 !important; }
 }
 #quarto-header .navbar-title {
   display: block;
-  // The name and the tabs are as large as fits: the name on one line on a
-  // 390px phone, and the tabs beside it on wide screens.
-  font-size: clamp(1.455rem, 1.287rem + 0.579vw, 1.75rem);
+  // The name is as large as fits on one line on a 390px phone (23px), and
+  // grows with the window to 34px on wide screens, with the tabs beside it.
+  font-size: clamp(1.455rem, 1.161rem + 1.205vw, 2.125rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.006em;
@@ -277,7 +277,7 @@ body.nav-fixed { padding-top: 0 !important; }
   display: block;
   margin-top: 0.3rem;
   color: var(--ink-soft);
-  font-size: clamp(1.095rem, 1.05rem + 0.167vw, 1.18rem);
+  font-size: clamp(1.095rem, 1rem + 0.391vw, 1.3125rem);
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0;
@@ -532,8 +532,8 @@ body.nav-fixed { padding-top: 0 !important; }
 // The two affiliation lines above the opening paragraph.
 .affiliation {
   margin: 0 0 1.1rem;
-  color: var(--ink-soft);
-  font-size: 1.18rem;
+  color: var(--ink);
+  font-size: 1em;
   font-style: italic;
   line-height: 1.36;
 }
@@ -550,7 +550,7 @@ body.nav-fixed { padding-top: 0 !important; }
     column-gap: 1.1rem;
   }
   .photo { margin: 0 0 1.4rem; }
-  .affiliation { margin: 0 0 1.4rem; font-size: 1.1rem; }
+  .affiliation { margin: 0 0 1.4rem; font-size: 1em; }
 }
 
 // "Research / Teaching / CV": a short typeset list of the other pages.
