@@ -105,7 +105,7 @@ Article
 :   **Development Studies Association (DSA)**
 
 2025–
-:   **UCD Centre for Peace and Conflict Research (CPCR)**, *Affiliated Student*
+:   **UCD Centre for Peace and Conflict Research (CPCR)**, *Affiliated Student; Member, Early Career Researcher Cluster (2026–)*
 
 2025–
 :   **UCD Centre for Democracy Research (CDR)**, *Member, Democracy and Inequality cluster*
