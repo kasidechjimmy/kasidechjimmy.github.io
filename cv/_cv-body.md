@@ -84,6 +84,9 @@ Article
 
 ## GRANTS AND AWARDS
 
+2026
+:   **SPIRe Research Funding Scheme, PhD stream (University College Dublin)**, *Award: up to €739 in conference support (DSA and PSAI)*
+
 2025–2029
 :   **UCD Iseult Honohan Doctoral Scholarship (University College Dublin, School of Politics and International Relations)**, *Award: full fees and €25,000 annual stipend*
 
