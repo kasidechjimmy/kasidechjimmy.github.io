@@ -12,8 +12,9 @@
 #      than the CV source, by rendering a copy of the source in a temporary
 #      folder (so nothing is ever written next to the source). In that copy
 #      \cvflagstrue is switched to \cvflagsfalse, so the red \cvflag
-#      reminders never print in the public PDF. The render log is kept in
-#      .quarto/build-cv-pdf.log.
+#      reminders never print in the public PDF, and the sections listed in
+#      pdf_drop_sections (none at present) are left out. The render log is
+#      kept in .quarto/build-cv-pdf.log.
 #
 # Generated files are rewritten only when their content changes, so
 # `quarto preview` does not re-render in a loop. Every problem is reported as
@@ -28,10 +29,13 @@ date_file <- "cv/_cv-updated.md"
 pdf_file  <- "files/Somboonkittichai_CV.pdf"
 pdf_log   <- ".quarto/build-cv-pdf.log"     # kept copy of the last PDF render log
 
-# Sections of the CV source left out of the website (the CV page and the PDF
-# on the site). Your own CV file keeps them. Write each heading as it appears
-# after "# " in the CV source; capitals and spaces at the end do not matter.
+# Sections of the CV source left out of the CV page on the website. Your own
+# CV file keeps them. Write each heading as it appears after "# " in the CV
+# source; capitals and spaces at the end do not matter.
 web_drop_sections <- c("YOUTH FORUMS AND COMPETITIONS", "REFERENCES")
+# Sections left out of the PDF on the website, written the same way. Empty:
+# the PDF keeps every section, references included, like your own CV file.
+pdf_drop_sections <- character(0)
 
 note <- function(...) cat("[build-cv] ", ..., "\n", sep = "")
 warn <- function(...) cat("[build-cv] WARNING: ", ..., "\n", sep = "", file = stderr())
@@ -102,8 +106,9 @@ drop_cvflags <- function(lines) {
   regmatches(text, gregexpr("\n", text, fixed = TRUE), invert = TRUE)[[1]]
 }
 
-# Remove the sections named in web_drop_sections: from their top-level
-# heading ("# REFERENCES") up to the next top-level heading or the end.
+# Remove the sections named in titles (web_drop_sections unless another list
+# is given): from their top-level heading ("# REFERENCES") up to the next
+# top-level heading or the end.
 drop_sections <- function(lines, titles = web_drop_sections) {
   if (!length(titles)) return(lines)
   top <- grepl("^#\\s", lines)
@@ -233,11 +238,11 @@ build_pdf <- function() {
   # The CV prints its \cvflag{...} reminders in red while \cvflagstrue is
   # set. Switch them off in this copy only (never in the CV source), so they
   # never appear in the public PDF.
-  # The sections in web_drop_sections are left out of this copy too, so the
-  # PDF on the website matches the CV page.
+  # The sections in pdf_drop_sections are left out of this copy (none at
+  # present: the PDF keeps the sections that the CV page leaves out).
   copy_lines <- readLines(copy, encoding = "UTF-8", warn = FALSE)
   copy_lines <- gsub("\\cvflagstrue", "\\cvflagsfalse", copy_lines, fixed = TRUE)
-  copy_lines <- drop_sections(copy_lines)
+  copy_lines <- drop_sections(copy_lines, pdf_drop_sections)
   writeLines(copy_lines, copy, useBytes = TRUE)
 
   # The website render sets QUARTO_PROJECT_* variables (project folder, files
