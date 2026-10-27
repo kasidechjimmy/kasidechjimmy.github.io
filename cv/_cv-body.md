@@ -33,7 +33,7 @@ BA, 2016–2021
 ### WORKING PROJECTS [\*‘NS’ indicates near submission]{.cv-note}
 
 Article [NS]
-:   **Somboonkittichai, K.** Spreading Inclusivity: Network Channels and Inclusive Peace Negotiations in Civil Wars.
+:   **Somboonkittichai, K.** Learning Who to Let In: The Network Diffusion of Inclusive Peace Negotiations across Civil Wars.
 
 Article [NS]
 :  **Somboonkittichai, K.**, & D'Amico, E.  Who Governs After Disaster? Political Exclusion and Ethnic Rebel Service Provision.
