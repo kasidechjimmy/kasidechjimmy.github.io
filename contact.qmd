@@ -20,11 +20,11 @@ Belfield, Dublin 4, Ireland
 ::: {.inline-links}
 - [UCD SPIRe](https://www.ucd.ie/spire/about/phdcandidates/){rel="me"}
 - [ORCID](https://orcid.org/0009-0007-4228-9083){rel="me"}
+- [Google Scholar](https://scholar.google.com/citations?user=YZYR_aAAAAAJ){rel="me"}
 - [LinkedIn](https://www.linkedin.com/in/kasidech-somboonkittichai-b12189245){rel="me"}
 
-<!-- TODO: add these when the profile addresses are known, one per line in
+<!-- TODO: add this when the profile address is known, on its own line in
      the same form, inside the list above:
-     - [Google Scholar](URL){rel="me"}
      - [Bluesky](URL){rel="me"} -->
 :::
 
