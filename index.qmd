@@ -20,7 +20,7 @@ School of Politics and International Relations (SPIRe)
 :::
 
 ::: {.opening}
-I am a PhD researcher in Quantitative and Computational Social Science at the School of Politics and International Relations (SPIRe), University College Dublin, supported by the UCD Iseult Honohan Doctoral Scholarship. My research focuses on peace practices and processes in civil conflict, with a particular interest in peace negotiations and how these practices diffuse across conflicts. More broadly, I investigate how cross-border networks (including social and economic networks) shape peace outcomes, and how glocal crises (including climate shocks) shape the behaviour of rebel groups. I also bring a strong background in research methodology and computational social science.
+I am a PhD researcher in Quantitative and Computational Social Science at the School of Politics and International Relations (SPIRe), University College Dublin, supported by the UCD Iseult Honohan Doctoral Scholarship. My research focuses on peace practices and processes in civil conflict, with a particular interest in peace negotiations and how these practices diffuse across conflicts. More broadly, I investigate how cross-border networks (including social and economic networks) shape peace outcomes, and how global crises (including climate shocks) shape the behaviour of rebel groups. I also bring a strong background in research methodology and computational social science.
 
 :::
 
