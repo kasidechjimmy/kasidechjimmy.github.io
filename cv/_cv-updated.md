@@ -1,1 +1,1 @@
-[Updated <time datetime="2026-10-27">27 October 2026</time>]{.cv-updated}
+[Updated <time datetime="2026-11-23">23 November 2026</time>]{.cv-updated}
