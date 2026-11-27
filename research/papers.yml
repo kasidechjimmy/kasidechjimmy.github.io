@@ -35,14 +35,14 @@
   section: working
   coauthors: ""
   venue: ""
-  status: "Near submission"
+  status: "Under review"
   note: "Presented at the VIP Workshop (2026), the JQCon Workshop (2026) and the UCD Centre for Peace and Conflict Research (invited talk, 2026)"
   doi: ""
   pdf: ""
   preprint: ""
   slides: ""
   abstract: |
-    Why is the inclusion of non-warring parties in peace negotiations more likely in some civil wars than others? This paper argues that social ties spread inclusion across conflicts through learning. Government and rebel leaders face uncertainty about the costs of inclusion and rely on credible, low-cost information rather than weighing every case. Public records of other negotiations reveal little about how inclusion affected the warring parties, whereas socially tied contacts can report this credibly because they have inside knowledge and a stake in the survival of the leaders they inform. I therefore expect government-rebel dyads to be more likely to negotiate inclusively when their socially tied conflicts already do. I test this with Stochastic Actor-Oriented Models, using dyad-year data (1989 to 2023) that link Peace Observatory records of non-warring actor inclusion to UCDP conflict data and an original index of social ties between countries. The annual probability of adopting inclusion rises from 2 percent when no socially tied conflict is inclusive to 54 percent when all are. This effect holds across alternative specifications of controls, rival explanations, weighting, functional form and sample. It is not reproduced when the exposure network is rebuilt on geographic proximity or shared mediators, and the effect of economic ties is less consistent. The findings carry implications for diffusion theory, the determinants of inclusive peace processes, and mediation design.
+    Research explains inclusion in peace agreements, rarely in the negotiations that precede them, and almost never through ties between conflicts. This article argues that social ties spread inclusion across conflicts through learning. Warring-party leaders are uncertain whether including non-warring parties is politically survivable and rely on credible information. Public records of other negotiations reveal little about what that decision costs the leaders involved, whereas socially tied contacts can report this credibly because they have inside knowledge and a stake in keeping the leaders they inform in power. Using a statistical network model and novel data on social ties (1989–2023), I find that non-warring parties are more likely to be at the table when a conflict is socially tied to others that have already negotiated inclusively. These findings reconceptualize peace negotiations: who is included depends not only on a conflict's dynamics but also on what leaders learn from their sustained contacts.
 
 - title: "Who Governs After Disaster? Political Exclusion and Ethnic Rebel Service Provision"
   section: working

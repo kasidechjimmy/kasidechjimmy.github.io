@@ -32,14 +32,14 @@ BA, 2016–2021
 
 ### WORKING PROJECTS [\*‘NS’ indicates near submission]{.cv-note}
 
-Article [NS]
+Under review
 :   **Somboonkittichai, K.** Learning Who to Let In: Social Ties and the Diffusion of Inclusive Peace Negotiations.
 
 Article [NS]
 :  **Somboonkittichai, K.**, & D'Amico, E.  Who Governs After Disaster? Political Exclusion and Ethnic Rebel Service Provision.
 
 Article
-:   **Somboonkittichai, K.** Looking Next Door: The Spatial Diffusion of Inclusion Provisions in Civil War Peace Agreements. 
+:   **Somboonkittichai, K.** Looking Next Door: Spatial Diffusion and the Thematic Content of Civil War Peace Agreements. 
 
 
 ## TEACHING AND RESEARCH EXPERIENCE
